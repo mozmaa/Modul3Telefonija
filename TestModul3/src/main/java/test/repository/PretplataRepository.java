@@ -18,7 +18,7 @@ public interface PretplataRepository extends JpaRepository<Pretplata, Long> {
 	Pretplata findOneById(Long id);
 
 	@Query("SELECT p FROM Pretplata p WHERE "+
-			"(:localDatumPocetkaOd < p.datumPocetka AND :localDatumPocetkaDo > p.datumPocetka) AND " +
+			"(p.datumPocetka BETWEEN :localDatumPocetkaOd AND :localDatumPocetkaDo) AND " +
 			"(:tarifaId IS NULL OR p.tarifa.id = :tarifaId)")
 	Page<Pretplata> search(
 			@Param("localDatumPocetkaOd") LocalDateTime localDatumPocetkaOd, 
